@@ -182,4 +182,43 @@
 	</bean>
 
 	<bean id="genderData" class="com.ardctraining.facades.product.data.GenderData" scope="prototype"/>
+
+	<alias name="defaultCustomProductLabelPopulator" alias="customProductLabelPopulator" />
+	<bean id="defaultCustomProductLabelPopulator" class="com.ardctraining.facades.populators.CustomProductLabelPopulator" />
+
+	<alias name="defaultCustomProductLabelConverter" alias="customProductLabelConverter" />
+	<bean id="defaultCustomProductLabelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.ardctraining.facades.product.data.CustomProductLabelData" />
+		<property name="populators" >
+			<list>
+				<ref bean="customProductLabelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultArdctrainingProductFacade" alias="productFacade" />
+	<bean id="defaultArdctrainingProductFacade" class="com.ardctraining.facades.product.impl.DefaultArdctrainingProductFacade" parent="defaultProductFacade">
+		<property name="customProductLabelService" ref="customProductLabelService" />
+		<property name="customProductLabelConverter" ref="customProductLabelConverter" />
+	</bean>
+
+	<alias name="defaultCustomerFeedbackPopulator" alias="customerFeedbackPopulator" />
+	<bean id="defaultCustomerFeedbackPopulator" class="com.ardctraining.facades.populators.CustomerFeedbackPopulator" />
+
+	<alias name="defaultCustomerFeedbackConverter" alias="customerFeedbackConverter" />
+	<bean id="defaultCustomerFeedbackConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.ardctraining.facades.feedback.data.CustomerFeedbackData" />
+		<property name="populators" >
+			<list>
+				<ref bean="customerFeedbackPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCustomerFeedbackFacade" alias="customerFeedbackFacade" />
+	<bean id="defaultCustomerFeedbackFacade" class="com.ardctraining.facades.feedback.impl.DefaultCustomerFeedbackFacade" parent="defaultCustomerFacade">
+		<property name="customerFeedbackService" ref="customerFeedbackService" />
+		<property name="customerFeedbackConverter" ref="customerFeedbackConverter" />
+	</bean>
+
 </beans>

@@ -25,12 +25,126 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        <enumtype code="CustomLabelTypeEnum" generate="true" autocreate="true" dynamic="true">
+            <value code="PRIMARY"/>
+            <value code="SECUNDARY"/>
+            <value code="ALTERNATIVE"/>
+        </enumtype>
+        <enumtype code="CustomerFeedbackEnum" generate="true" autocreate="true" dynamic="true">
+            <value code="NOT_READ"/>
+            <value code="READ"/>
+            <value code="PASTDUE"/>
+            <value code="READ_PASTDUE"/>
+        </enumtype>
     </enumtypes>
 
     <itemtypes>
 
         <!-- Add your item definitions here -->
 
+        <typegroup name="ardctraining">
+            <itemtype code="CustomProductLabel" autocreate="true" generate="true" jaloclass="com.ardctraining.core.jalo.CustomProductLabel">
+                <deployment table="custprodlabel" typecode="10602" />
+                <attributes>
+                    <attribute qualifier="label" type="java.lang.String">
+                        <modifiers read="true" write="true" unique="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="labelType" type="CustomLabelTypeEnum">
+                        <modifiers read="true" write="true" />
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="validityDate" type="java.util.Date">
+                        <modifiers read="true" write="true" />
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="customer" type="Customer">
+                        <modifiers read="true" write="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="product" type="Product">
+                        <modifiers read="true" write="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+                <indexes>
+                    <index name="pk_custprodlabel" unique="true">
+                        <key attribute="label" />
+                        <key attribute="customer" />
+                        <key attribute="product" />
+                    </index>
+                </indexes>
+            </itemtype>
+
+            <itemtype code="Customer" autocreate="false" generate="false">
+                <attributes>
+                    <attribute qualifier="company" type="java.lang.String">
+                        <modifiers write="true" read="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="jobRole" type="JobRole">
+                        <modifiers write="true" read="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="JobRole"
+                      autocreate="true"
+                      generate="true"
+                      jaloclass="com.ardctraining.core.jalo.JobRole">
+                <description>Custome's job role</description>
+                <deployment table="jobrole" typecode="10501"/>
+                <attributes>
+                    <attribute qualifier="code" type="java.lang.String">
+                        <modifiers read="true" write="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="description" type="java.lang.String">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+                <indexes>
+                    <index name="pk_jobrole" unique="true">
+                        <key attribute="code"/>
+                    </index>
+                </indexes>
+            </itemtype>
+            <itemtype code="CustomerFeedback"
+                      autocreate="true"
+                      generate="true"
+                      jaloclass="com.ardctraining.core.jalo.CustomerFeedback">
+                <deployment table="customerfeedback" typecode="10702"/>
+                <attributes>
+                    <attribute qualifier="customer" type="Customer">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="read" type="java.lang.Boolean">
+                        <defaultvalue>false</defaultvalue>
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="subject" type="java.lang.String">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="message" type="java.lang.String">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="submittedDate" type="java.util.Date">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="status" type="CustomerFeedbackEnum">
+                        <modifiers read="true" write="false"/>
+                        <persistence type="dynamic" attributeHandler="customerFeedbackStatusHandler"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
 
         <!-- TypeGroups are for structure of this file only -->
 

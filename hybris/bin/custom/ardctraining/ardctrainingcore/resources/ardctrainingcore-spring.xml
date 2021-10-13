@@ -538,4 +538,41 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<!-- BEGIN custom beans-->
+	<bean id="customProductLabelPrepareInterceptor" class="com.ardctraining.core.interceptor.CustomProductLabelPrepareInterceptor" />
+
+	<bean id="customProductLabelPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="customProductLabelPrepareInterceptor" />
+		<property name="typeCode" value="CustomProductLabel" />
+	</bean>
+
+	<alias name="defaultCustomProductLabelDao" alias="customProductLabelDao" />
+	<bean id="defaultCustomProductLabelDao" class="com.ardctraining.core.product.dao.impl.DefaultCustomProductLabelDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<alias name="defaultCustomProductLabelService" alias="customProductLabelService" />
+	<bean id="defaultCustomProductLabelService" class="com.ardctraining.core.product.service.impl.DefaultCustomProductLabelService">
+		<property name="customProductLabelDao" ref="customProductLabelDao" />
+	</bean>
+
+	<alias name="customerFeedbackStatusHandler" alias="customerFeedbackStatusHandler" />
+	<bean id="customerFeedbackStatusHandler" class="com.ardctraining.core.handler.CustomerFeedbackStatusHandler">
+		<property name="timeService" ref="timeService" />
+		<property name="configurationService" ref="configurationService" />
+	</bean>
+
+	<alias name="defaultCustomerFeedbackDao" alias="customerFeedbackDao" />
+	<bean id="defaultCustomerFeedbackDao" class="com.ardctraining.core.feedback.dao.impl.DefaultCustomerFeedbackDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<alias name="defaultCustomerFeedbackService" alias="customerFeedbackService" />
+	<bean name="defaultCustomerFeedbackService" class="com.ardctraining.core.feedback.service.impl.DefaultCustomerFeedbackService" >
+		<property name="customerFeedbackDao" ref="customerFeedbackDao" />
+		<property name="timeService" ref="timeService" />
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<!-- END custom beans -->
 </beans>

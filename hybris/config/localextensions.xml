@@ -1,13 +1,14 @@
 <hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
-    <extension name="ardctrainingcore"/>
-    <extension name="ardctrainingbackoffice"/>
-    <extension name="ardctrainingfacades"/>
-    <extension name="ardctrainingfulfilmentprocess"/>
-    <extension name="ardctraininginitialdata"/>
-    <extension name="ardctrainingtest"/>
-    <extension name="ardctrainingstorefront"/>
+   <extension name="ardctrainingcore"/>
+   <extension name="ardctrainingbackoffice"/>
+   <extension name="ardctrainingfacades"/>
+   <extension name="ardctrainingfulfilmentprocess"/>
+   <extension name="ardctraininginitialdata"/>
+   <extension name="ardctrainingtest"/>
+   <extension name="ardctrainingstorefront"/>
+
     <extension name='adaptivesearch' />
     <extension name='adaptivesearchbackoffice' />
     <extension name='adaptivesearchfacades' />
@@ -250,12 +251,5 @@
     <extension name='permissionswebservices' />
     <extension name='webservicescommons' />
     <extension name='ywebservices' />
-    <extension name='orbeonweb' />
-    <extension name='xyformsbackoffice' />
-    <extension name='xyformsfacades' />
-    <extension name='xyformssamples' />
-    <extension name='xyformsservices' />
-    <extension name='xyformsstorefrontcommons' />
-    <extension name='xyformsweb' />
   </extensions>
 </hybrisconfig>

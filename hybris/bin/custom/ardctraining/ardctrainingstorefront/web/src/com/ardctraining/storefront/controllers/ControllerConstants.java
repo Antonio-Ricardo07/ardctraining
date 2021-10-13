@@ -70,7 +70,9 @@ public interface ControllerConstants
 
 		interface Pages
 		{
-			interface Account // NOSONAR
+
+
+            interface Account // NOSONAR
 			{
 				String AccountLoginPage = "pages/account/accountLoginPage"; // NOSONAR
 				String AccountHomePage = "pages/account/accountHomePage"; // NOSONAR

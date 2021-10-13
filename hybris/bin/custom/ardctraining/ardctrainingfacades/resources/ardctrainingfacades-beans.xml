@@ -12,4 +12,16 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="com.ardctraining.facades.product.data.CustomProductLabelData">
+		<property name="label" type="java.lang.String" />
+		<property name="type" type="java.lang.String" />
+	</bean>
+
+	<bean class="com.ardctraining.facades.feedback.data.CustomerFeedbackData">
+		<property name="subject" type="java.lang.String" />
+		<property name="message" type="java.lang.String" />
+		<property name="status" type="com.ardctraining.core.enums.CustomerFeedbackEnum" />
+		<property name="submittedDate" type="java.util.Date" />
+	</bean>
 </beans>
